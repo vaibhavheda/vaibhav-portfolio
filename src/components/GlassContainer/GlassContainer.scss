@@ -1,0 +1,42 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixins';
+
+.glass-container {
+  position: relative;
+  
+  &--default {
+    @include glass-effect;
+    padding: $spacing-xl;
+    
+    @include mobile-only {
+      padding: $spacing-lg;
+    }
+  }
+  
+  &--enhanced {
+    @include glass-effect-enhanced;
+    padding: $spacing-xl;
+    
+    @include mobile-only {
+      padding: $spacing-lg;
+    }
+  }
+  
+  &--card {
+    @include glass-effect;
+    @include glass-hover-effect;
+    padding: $spacing-lg;
+    
+    @include mobile-only {
+      padding: $spacing-md;
+    }
+  }
+  
+  &--clickable {
+    cursor: pointer;
+    
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+} 

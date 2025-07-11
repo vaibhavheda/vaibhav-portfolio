@@ -1,0 +1,122 @@
+// CSS Custom Properties for theming
+:root {
+  // Light Theme Colors
+  --bg-primary: linear-gradient( to bottom, hsla(150, 38%, 86%, 0) 0%, hsla(150, 38%, 86%, .013) 9.7%, hsla(150, 38%, 86%, .049) 18.1%, hsla(150, 38%, 86%, .104) 25.5%, hsla(150, 38%, 86%, .175) 31.9%, hsla(150, 38%, 86%, .259) 37.7%, hsla(150, 38%, 86%, .352) 43%, hsla(150, 38%, 86%, .45) 47.9%, hsla(150, 38%, 86%, .55) 52.8%, hsla(150, 38%, 86%, .648) 57.7%, hsla(150, 38%, 86%, .741) 63%, hsla(150, 38%, 86%, .825) 68.7%, hsla(150, 38%, 86%, .896) 75%, hsla(150, 38%, 86%, .951) 82.2%, hsla(150, 38%, 86%, .987) 90.5%, hsl(150, 38%, 86%) 100% );
+  --bg-secondary: rgba(255,255,255,0.18);
+  --bg-tertiary: rgba(255,255,255,0.10);
+  --text-primary: #22343c;
+  --text-secondary: #4b5c6b;
+  --text-accent: #185c47;
+  --border-color: rgba(34,52,60,0.10);
+  --shadow-color: rgba(34,52,60,0.08);
+  --glass-bg: rgba(255,255,255,0.65);
+  --glass-border: rgba(255,255,255,0.30);
+  --glass-shadow: rgba(255,214,176,0.10);
+  // Accent Colors
+  --accent-primary: #3ecf8e;
+  --accent-secondary: #ffe0f7;
+  --accent-tertiary: #d6f5e3;
+  --accent-quaternary: #ffe5d0;
+  // Timeline Colors
+  --timeline-bar: #b8ffe3;
+  --timeline-bg: #ffe5d0;
+  // Status Colors
+  --success: #b8ffe3;
+  --warning: #ffe066;
+  --error: #ffb3c6;
+  --info: #b8e0ff;
+  --skill-hover-bg: #bae6fd;
+  --skill-hover-text: #22343c;
+  
+  // Gradient Background Colors (Light Theme)
+  --gradient-bg-1: rgba(255, 224, 247, 0.22);
+  --gradient-bg-2: rgba(214, 255, 227, 0.18);
+  --gradient-bg-3: rgba(255, 229, 208, 0.12);
+  --gradient-bg-4: rgba(255, 255, 255, 0.08);
+  --gradient-bg-5: rgba(255, 229, 208, 0.14);
+  --gradient-bg-6: rgba(214, 255, 227, 0.12);
+  --gradient-bg-7: rgba(255, 224, 247, 0.10);
+  --gradient-bg-8: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] {
+  // Dark Theme Colors
+  --bg-primary: linear-gradient( to bottom, hsla(158, 23%, 18%, 0) 0%, hsla(158, 23%, 18%, .013) 9.7%, hsla(158, 23%, 18%, .049) 18.1%, hsla(158, 23%, 18%, .104) 25.5%, hsla(158, 23%, 18%, .175) 31.9%, hsla(158, 23%, 18%, .259) 37.7%, hsla(158, 23%, 18%, .352) 43%, hsla(158, 23%, 18%, .45) 47.9%, hsla(158, 23%, 18%, .55) 52.8%, hsla(158, 23%, 18%, .648) 57.7%, hsla(158, 23%, 18%, .741) 63%, hsla(158, 23%, 18%, .825) 68.7%, hsla(158, 23%, 18%, .896) 75%, hsla(158, 23%, 18%, .951) 82.2%, hsla(158, 23%, 18%, .987) 90.5%, hsl(158, 23%, 18%) 100% );
+  --bg-secondary: rgba(255,255,255,0.06);
+  --bg-tertiary: rgba(255,255,255,0.03);
+  --text-primary: #f4f4f4;
+  --text-secondary: #b0bfc7;
+  --text-accent: #16262e;
+  --border-color: rgba(255,255,255,0.10);
+  --shadow-color: rgba(0,0,0,0.18);
+  --glass-bg: rgba(255,255,255,0.08);
+  --glass-border: rgba(255,255,255,0.10);
+  --glass-shadow: rgba(0,0,0,0.18);
+  // Accent Colors (adjusted for dark theme)
+  --accent-primary: #6fffc2;
+  --accent-secondary: #3ecf8e;
+  --accent-tertiary: #b8ffe3;
+  --accent-quaternary: #e0ffe7;
+  // Timeline Colors
+  --timeline-bar: #3ecf8e;
+  --timeline-bg: #101c1f;
+  --skill-hover-bg: #185c47;
+  --skill-hover-text: #fff;
+  
+  // Gradient Background Colors (Dark Theme)
+  --gradient-bg-1: #3e2c23;
+  --gradient-bg-2: #1a3e2c;
+  --gradient-bg-3: rgba(0, 0, 0, 0.18);
+  --gradient-bg-4: rgba(0, 0, 0, 0.12);
+  --gradient-bg-5: #3e2c23;
+  --gradient-bg-6: #1a3e2c;
+  --gradient-bg-7: rgba(52, 152, 219, 0.08);
+  --gradient-bg-8: rgba(44, 62, 80, 0.08);
+}
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-xxl: 3rem;
+$spacing-xxxl: 4rem;
+
+// Breakpoints
+$breakpoint-xs: 480px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1200px;
+$breakpoint-xl: 1400px;
+
+// Typography
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-xxl: 1.5rem;
+$font-size-xxxl: 2rem;
+$font-size-xxxxl: 2.5rem;
+$font-size-xxxxxl: 3rem;
+
+// Border Radius
+$border-radius-sm: 0.25rem;
+$border-radius-md: 0.5rem;
+$border-radius-lg: 1rem;
+$border-radius-xl: 1.5rem;
+
+// Transitions
+$transition-fast: 0.15s ease;
+$transition-medium: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Z-Index
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070; 

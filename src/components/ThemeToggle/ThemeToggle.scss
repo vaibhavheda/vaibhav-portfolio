@@ -1,0 +1,123 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixins';
+
+.theme-toggle {
+  position: relative;
+  
+  &__button {
+    position: relative;
+    
+    &:hover {
+      + .theme-toggle__indicator {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+  
+  &__indicator {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    opacity: 0;
+    transition: all $transition-medium;
+    pointer-events: none;
+    margin-bottom: $spacing-sm;
+    z-index: $z-index-tooltip;
+  }
+  
+  &__tooltip {
+    @include glass-effect;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $border-radius-sm;
+    font-size: $font-size-xs;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-top-color: var(--glass-border);
+    }
+  }
+}
+
+// Theme-specific button styling
+.theme-toggle__button {
+  &:hover {
+    svg {
+      color: var(--accent-primary);
+    }
+  }
+}
+
+// Theme transition animations
+[data-theme="light"] .theme-toggle__button svg {
+  color: #fbbf24; // sun color
+}
+
+[data-theme="dark"] .theme-toggle__button svg {
+  color: #60a5fa; // moon color
+}
+
+[data-theme="system"] .theme-toggle__button svg {
+  color: var(--text-secondary);
+} 
+
+.theme-fab {
+  position: fixed;
+  left: 32px;
+  bottom: 32px;
+  z-index: 1200;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(111,255,194,0.85); // softer, more glassy
+  color: #22343c;
+  box-shadow: 0 8px 32px 0 rgba(62, 44, 35, 0.18), 0 1.5px 0 0 rgba(255,255,255,0.08) inset;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  outline: none;
+  &:hover, &:focus {
+    background: rgba(62,207,142,0.92);
+    color: #fff;
+    box-shadow: 0 12px 40px 0 rgba(62, 44, 35, 0.22), 0 1.5px 0 0 rgba(255,255,255,0.10) inset;
+  }
+}
+
+// Light mode: upper glow
+[data-theme="light"] .theme-fab {
+  background: rgba(111,255,194,0.75);
+  color: #22343c;
+  box-shadow: 0 -8px 32px 0 rgba(255,214,176,0.18), 0 4px 24px rgba(0,0,0,0.10);
+}
+
+// Dark mode: downward shadow
+[data-theme="dark"] .theme-fab {
+  background: rgba(62,207,142,0.70);
+  color: #fff;
+  box-shadow: 0 16px 40px 0 rgba(62, 44, 35, 0.28), 0 1.5px 0 0 rgba(255,255,255,0.06) inset;
+}
+
+@media (max-width: 600px) {
+  .theme-fab {
+    left: 16px;
+    bottom: 16px;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+  }
+} 

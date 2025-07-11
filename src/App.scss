@@ -1,0 +1,162 @@
+@import './styles/_variables';
+@import './styles/_mixins';
+
+.app {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  position: relative;
+  overflow-x: hidden;
+  
+  // Background pattern effect
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 20%, var(--gradient-bg-1) 0%, rgba(255, 224, 247, 0.10) 25%, rgba(255, 224, 247, 0.04) 60%, rgba(255, 224, 247, 0.01) 85%, transparent 100%),
+      radial-gradient(circle at 80% 80%, var(--gradient-bg-2) 0%, rgba(214, 255, 227, 0.08) 30%, rgba(214, 255, 227, 0.03) 70%, rgba(214, 255, 227, 0.01) 90%, transparent 100%),
+      radial-gradient(circle at 60% 20%, var(--gradient-bg-3) 0%, rgba(255, 229, 208, 0.06) 35%, rgba(255, 229, 208, 0.02) 75%, rgba(255, 229, 208, 0.01) 92%, transparent 100%),
+      radial-gradient(circle at 40% 70%, var(--gradient-bg-4) 0%, rgba(255, 255, 255, 0.04) 40%, rgba(255, 255, 255, 0.01) 85%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+    transition: background 0.5s ease;
+  }
+  
+  // Animated background elements
+  &::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+      radial-gradient(circle at 30% 30%, var(--gradient-bg-5) 0%, rgba(255, 229, 208, 0.01) 40%, rgba(255, 229, 208, 0.003) 80%, transparent 100%),
+      radial-gradient(circle at 70% 70%, var(--gradient-bg-6) 0%, rgba(214, 255, 227, 0.008) 45%, rgba(214, 255, 227, 0.002) 90%, transparent 100%),
+      radial-gradient(circle at 60% 80%, var(--gradient-bg-7) 0%, rgba(255, 224, 247, 0.006) 50%, rgba(255, 224, 247, 0.002) 95%, transparent 100%),
+      radial-gradient(circle at 80% 40%, var(--gradient-bg-8) 0%, rgba(255, 255, 255, 0.004) 55%, rgba(255, 255, 255, 0.001) 98%, transparent 100%);
+    animation: backgroundFloat 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+    transition: background 0.01s ease;
+    filter: blur(8px);
+  }
+  
+  .main-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 80px; // Account for fixed navbar
+    
+    section {
+      min-height: 100vh;
+      padding: $spacing-xxxl 0;
+      
+      @include mobile-only {
+        padding: $spacing-xxl 0;
+      }
+      
+      &:first-child {
+        padding-top: 0;
+      }
+    }
+  }
+}
+
+// Container for sections
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-xl;
+  
+  @include mobile-only {
+    padding: 0 $spacing-lg;
+  }
+}
+
+// Section spacing
+.section {
+  padding: $spacing-xxxl 0;
+  
+  @include mobile-only {
+    padding: $spacing-xxl 0;
+  }
+}
+
+// Background animations
+@keyframes backgroundFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(-40px) rotate(180deg);
+  }
+  75% {
+    transform: translateY(-20px) rotate(270deg);
+  }
+}
+
+// Enhanced background animation for theme transitions
+@keyframes backgroundPulse {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// Scrollbar styling
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
+
+// Theme transition enhancements
+.app {
+  transition: background 0.5s ease;
+  
+  &::before,
+  &::after {
+    transition: background 0.5s ease;
+  }
+}
+
+// Dark theme adjustments (now using CSS custom properties)
+[data-theme="dark"] {
+  .app {
+    &::before {
+      background: 
+        radial-gradient(circle at 20% 20%, var(--gradient-bg-1) 0%, rgba(62, 44, 35, 0.10) 25%, rgba(62, 44, 35, 0.04) 60%, rgba(62, 44, 35, 0.01) 85%, transparent 100%),
+        radial-gradient(circle at 80% 80%, var(--gradient-bg-2) 0%, rgba(26, 62, 44, 0.08) 30%, rgba(26, 62, 44, 0.03) 70%, rgba(26, 62, 44, 0.01) 90%, transparent 100%),
+        radial-gradient(circle at 60% 20%, var(--gradient-bg-3) 0%, rgba(0, 0, 0, 0.06) 35%, rgba(0, 0, 0, 0.02) 75%, rgba(0, 0, 0, 0.01) 92%, transparent 100%),
+        radial-gradient(circle at 40% 70%, var(--gradient-bg-4) 0%, rgba(0, 0, 0, 0.04) 40%, rgba(0, 0, 0, 0.01) 85%, transparent 100%);
+    }
+    
+    &::after {
+      background: 
+        radial-gradient(circle at 30% 30%, var(--gradient-bg-5) 0%, rgba(62, 44, 35, 0.008) 40%, rgba(62, 44, 35, 0.002) 80%, transparent 100%),
+        radial-gradient(circle at 70% 70%, var(--gradient-bg-6) 0%, rgba(26, 62, 44, 0.006) 45%, rgba(26, 62, 44, 0.0015) 90%, transparent 100%),
+        radial-gradient(circle at 60% 80%, var(--gradient-bg-7) 0%, rgba(52, 152, 219, 0.004) 50%, rgba(52, 152, 219, 0.001) 95%, transparent 100%),
+        radial-gradient(circle at 80% 40%, var(--gradient-bg-8) 0%, rgba(44, 62, 80, 0.002) 55%, rgba(44, 62, 80, 0.0005) 98%, transparent 100%);
+      filter: blur(8px);
+    }
+  }
+} 

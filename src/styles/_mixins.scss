@@ -1,0 +1,340 @@
+// Glass Effect Mixin
+@mixin glass-effect($blur: 10px, $opacity: 0.1) {
+  background: var(--glass-bg);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px var(--glass-shadow);
+  border-radius: $border-radius-lg;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(255, 255, 255, 0.05) 50%, 
+      rgba(255, 255, 255, 0.02) 100%);
+    pointer-events: none;
+  }
+}
+
+// Enhanced Glass Effect with Reflection
+@mixin glass-effect-enhanced($blur: 15px) {
+  @include glass-effect($blur);
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(255, 255, 255, 0.05) 50%, 
+      transparent 100%);
+    pointer-events: none;
+  }
+}
+
+// Hover Glass Effect
+@mixin glass-hover-effect {
+  transition: all $transition-medium;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px var(--glass-shadow);
+    border-color: rgba(255, 255, 255, 0.3);
+    
+    &::before {
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.08) 50%, 
+        rgba(255, 255, 255, 0.03) 100%);
+    }
+  }
+}
+
+// Responsive Mixins
+@mixin mobile-only {
+  @media screen and (max-width: #{$breakpoint-sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media screen and (min-width: $breakpoint-sm) and (max-width: #{$breakpoint-md - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop-only {
+  @media screen and (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin mobile-up {
+  @media screen and (min-width: $breakpoint-xs) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media screen and (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media screen and (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+// Flexbox Utilities
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-center {
+  @include flex-column;
+  align-items: center;
+  justify-content: center;
+}
+
+// Text Utilities
+@mixin text-gradient($gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))) {
+  background: $gradient;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+
+@mixin text-shadow-glow($color: var(--accent-primary)) {
+  text-shadow: 0 0 10px $color, 0 0 20px $color, 0 0 30px $color;
+}
+
+// Button Mixins
+@mixin button-reset {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  outline: none;
+}
+
+@mixin button-glass {
+  @include button-reset;
+  @include glass-effect;
+  @include glass-hover-effect;
+  
+  padding: $spacing-sm $spacing-lg;
+  color: var(--text-primary);
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: $border-radius-md;
+  transition: all $transition-medium;
+  
+  &:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Animation Mixins
+@mixin fade-in($duration: 0.3s) {
+  opacity: 0;
+  animation: fadeIn $duration ease-out forwards;
+}
+
+@mixin slide-in-up($duration: 0.5s) {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: slideInUp $duration ease-out forwards;
+}
+
+@mixin slide-in-left($duration: 0.5s) {
+  transform: translateX(-20px);
+  opacity: 0;
+  animation: slideInLeft $duration ease-out forwards;
+}
+
+@mixin floating-animation($duration: 3s) {
+  animation: float $duration ease-in-out infinite;
+}
+
+// Keyframes
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes backgroundFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(-40px) rotate(180deg);
+  }
+  75% {
+    transform: translateY(-20px) rotate(270deg);
+  }
+}
+
+@keyframes backgroundPulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+// Advanced Gradient Background Mixin
+@mixin advanced-gradient-bg($type: 'default') {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+    
+    @if $type == 'default' {
+      background: 
+        radial-gradient(circle at 20% 20%, var(--gradient-bg-1) 0%, rgba(255, 224, 247, 0.15) 30%, transparent 70%),
+        radial-gradient(circle at 80% 80%, var(--gradient-bg-2) 0%, rgba(214, 255, 227, 0.12) 35%, transparent 75%),
+        radial-gradient(circle at 60% 20%, var(--gradient-bg-3) 0%, rgba(255, 229, 208, 0.08) 40%, transparent 80%),
+        radial-gradient(circle at 40% 70%, var(--gradient-bg-4) 0%, rgba(255, 255, 255, 0.05) 45%, transparent 85%);
+    } @else if $type == 'animated' {
+      background: 
+        radial-gradient(circle at 30% 30%, var(--gradient-bg-5) 0%, rgba(255, 229, 208, 0.2) 25%, transparent 60%),
+        radial-gradient(circle at 70% 70%, var(--gradient-bg-6) 0%, rgba(214, 255, 227, 0.15) 30%, transparent 65%),
+        radial-gradient(circle at 60% 80%, var(--gradient-bg-7) 0%, rgba(255, 224, 247, 0.1) 35%, transparent 70%),
+        radial-gradient(circle at 80% 40%, var(--gradient-bg-8) 0%, rgba(255, 255, 255, 0.06) 40%, transparent 75%);
+      animation: backgroundFloat 20s ease-in-out infinite;
+    } @else if $type == 'subtle' {
+      background: 
+        radial-gradient(circle at 50% 50%, var(--gradient-bg-1) 0%, rgba(255, 224, 247, 0.1) 40%, transparent 80%),
+        radial-gradient(circle at 25% 75%, var(--gradient-bg-2) 0%, rgba(214, 255, 227, 0.08) 45%, transparent 85%);
+    }
+    
+    transition: background 0.5s ease;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      135deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.02) 50%,
+      transparent 100%
+    );
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover::after {
+    opacity: 0.8;
+  }
+}
+
+// Gradient Text Effect Mixin
+@mixin gradient-text-effect($gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))) {
+  background: $gradient;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  position: relative;
+  
+  &::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: $gradient;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: blur(8px);
+    opacity: 0.3;
+    z-index: -1;
+  }
+} 
