@@ -2,6 +2,7 @@
   "name": "vaibhav-portfolio",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://vaibhavheda.github.io/vaibhav-portfolio",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
