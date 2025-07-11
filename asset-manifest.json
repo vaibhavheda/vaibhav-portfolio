@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/vaibhav-portfolio/static/css/main.c9dd4bed.css",
+    "main.js": "/vaibhav-portfolio/static/js/main.a3e46963.js",
+    "index.html": "/vaibhav-portfolio/index.html",
+    "main.c9dd4bed.css.map": "/vaibhav-portfolio/static/css/main.c9dd4bed.css.map",
+    "main.a3e46963.js.map": "/vaibhav-portfolio/static/js/main.a3e46963.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c9dd4bed.css",
+    "static/js/main.a3e46963.js"
+  ]
+}
