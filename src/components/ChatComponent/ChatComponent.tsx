@@ -81,13 +81,21 @@ const ChatComponent: React.FC<ChatComponentProps> = ({ isOpen, onClose }) => {
   ]);
   const [showQuestions, setShowQuestions] = React.useState(true);
 
+  // Track all active timeouts so they can be cleared when the chat closes
+  const timeoutsRef = React.useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  const clearTimeouts = () => {
+    timeoutsRef.current.forEach(clearTimeout);
+    timeoutsRef.current = [];
+  };
+
   // Split bot answer into bubbles and show sequentially
   const showBotBubbles = (bubbles: string[]) => {
     if (bubbles.length === 0) {
       setShowQuestions(true);
       return;
     }
-    setTimeout(() => {
+    const id = setTimeout(() => {
       setMessages((prev) => [
         ...prev,
         {
@@ -99,6 +107,7 @@ const ChatComponent: React.FC<ChatComponentProps> = ({ isOpen, onClose }) => {
       ]);
       showBotBubbles(bubbles.slice(1));
     }, 700);
+    timeoutsRef.current.push(id);
   };
 
   const handleQuestionClick = (question: PredefinedQuestion) => {
@@ -113,12 +122,14 @@ const ChatComponent: React.FC<ChatComponentProps> = ({ isOpen, onClose }) => {
     ]);
     setShowQuestions(false);
     const bubbles = Array.isArray(question.answer) ? question.answer : [question.answer];
-    setTimeout(() => {
+    const id = setTimeout(() => {
       showBotBubbles(bubbles);
     }, 500);
+    timeoutsRef.current.push(id);
   };
 
   const resetChat = () => {
+    clearTimeouts();
     setMessages([
       {
         id: 1,
@@ -130,13 +141,21 @@ const ChatComponent: React.FC<ChatComponentProps> = ({ isOpen, onClose }) => {
     setShowQuestions(true);
   };
 
-  // Reset chat when closed
+  // Reset chat and clear any pending bot messages when closed
   useEffect(() => {
     if (!isOpen) {
+      clearTimeouts();
       resetChat();
     }
     // eslint-disable-next-line
   }, [isOpen]);
+
+  // Clean up timeouts on unmount
+  useEffect(() => {
+    return () => {
+      clearTimeouts();
+    };
+  }, []);
 
   if (!isOpen) return null;
 
