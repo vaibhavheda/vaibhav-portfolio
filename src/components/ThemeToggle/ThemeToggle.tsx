@@ -9,7 +9,8 @@ function getThemeForHour(hour: number) {
   return hour >= LIGHT_HOURS.start && hour <= LIGHT_HOURS.end ? 'light' : 'dark';
 }
 
-const ThemeFloatingSwitcher: React.FC = () => {
+// Floating button to switch between light, dark and system themes
+const ThemeTimelineSwitcher: React.FC = () => {
   const { theme, setTheme } = useTheme();
   // Cycle: light -> dark -> system -> light ...
   const handleToggle = () => {
@@ -39,4 +40,4 @@ const ThemeFloatingSwitcher: React.FC = () => {
   );
 };
 
-export default ThemeFloatingSwitcher; 
+export default ThemeTimelineSwitcher;
